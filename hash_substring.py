@@ -7,7 +7,7 @@ def read_input():
         pattern = input().rstrip()
         text = input().rstrip()
     elif input_type == 'F':
-        with open(input().rstrip()) as f:
+        with open('./tests/06', 'r'.rstrip()) as f:
             pattern = f.readline().rstrip()
             text = f.readline().rstrip()
     return pattern, text
@@ -24,7 +24,7 @@ def read_input():
     # return both lines in one return
 
 
-    
+
 
 def print_occurrences(output):
 
