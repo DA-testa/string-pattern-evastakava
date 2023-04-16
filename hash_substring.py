@@ -1,8 +1,7 @@
 # python3
 
 def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
+
     input_type = input().rstrip()
     if input_type == 'I':
         pattern = input().rstrip()
@@ -12,6 +11,10 @@ def read_input():
             pattern = f.readline().rstrip()
             text = f.readline().rstrip()
     return pattern, text
+
+   # this function needs to aquire input both from keyboard and file
+    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
+    
     
     # after input type choice
     # read two lines 
@@ -24,11 +27,11 @@ def read_input():
 
 
 def print_occurrences(output):
-    # this function should control output, it doesn't need any return
+
     print(' '.join(map(str, output)))
 
 def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
+
     p = 10**9 + 7
     x = 263
     occurrences = []
@@ -38,13 +41,14 @@ def get_occurrences(pattern, text):
         return occurrences
     p_hash = hash_string(pattern, p, x)
     H = precompute_hashes(text, m, p, x)
-    for i in range (n - m + 1):
+    for i in range(n - m + 1):
         if p_hash != H[i]:
             continue
         if pattern == text[i:i+m]:
             occurrences.append(i)
-    # and return an iterable variable
+
     return occurrences
+
 
 def hash_string(s, p, x):
     h = 0
@@ -61,7 +65,7 @@ def precompute_hashes(text, m, p, x):
     for i in range(m):
         y = (y * x) % p
     for i in range(n - m - 1, -1, -1):
-        prehash = x * H[i+1] + ord(text[i] - y * ord(text[i+m]))
+        prehash = x * H[i+1] + ord(text[i]) - y * ord(text[i+m])
         H[i] = prehash % p
     return H
 
